@@ -89,9 +89,12 @@ function generateActivityVisualization(commitDateList, startDate, endDate) {
   ];
 
   // Organize days by day of week and week number
-  const calendar = Array(7)
-    .fill()
-    .map(() => Array(totalWeeks).fill(null));
+  // const calendar = Array(7)
+  //   .fill()
+  //   .map(() => Array(totalWeeks).fill(null));
+  const calendar = Array.from({ length: 7 }, () =>
+    Array(totalWeeks).fill(null)
+  );
 
   days.forEach((day, index) => {
     const dayOfWeek = getDay(day); // 0 = Sunday, 1 = Monday, etc.

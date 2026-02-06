@@ -8,7 +8,7 @@ import { existsSync } from "fs";
 //const { existsSync } = require("fs");
 const execAsync = util.promisify(exec);
 import {
-  parse,
+  parseISO,
   addDays,
   addYears,
   setHours,
@@ -31,8 +31,10 @@ export default function({
   preview
 }) {
   // Parse dates once to avoid inconsistencies
-  const startDateObj = startDate ? parse(startDate) : addYears(new Date(), -1);
-  const endDateObj = endDate ? parse(endDate) : new Date();
+  const startDateObj = startDate
+    ? parseISO(startDate)
+    : addYears(new Date(), -1);
+  const endDateObj = endDate ? parseISO(endDate) : new Date();
 
   const commitDateList = createCommitDateList({
     commitsPerDay: (commitsPerDay || "1,1").split(","),
