@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
-const meow = require("meow");
-const fgh = require("./index");
+//const meow = require("meow").default;
+import meow from "meow";
+//const fgh = require("./index");
+
+import fgh from "./index.js";
 
 const cli = meow(
   `
@@ -26,6 +29,9 @@ const cli = meow(
       $ fake-git-history --distribution workHours
       $ fake-git-history --preview
 `,
+  {
+    importMeta: import.meta
+  },
   {
     flags: {
       startDate: {

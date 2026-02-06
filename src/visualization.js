@@ -1,5 +1,5 @@
-const chalk = require("chalk");
-const { format, getDay, differenceInDays, addDays } = require("date-fns");
+import chalk from "chalk";
+import { format, getDay, differenceInDays, addDays } from "date-fns";
 
 /**
  * Generate a visualization of the activity graph
@@ -12,7 +12,7 @@ function generateActivityVisualization(commitDateList, startDate, endDate) {
   // Count commits by day
   const commitsByDay = {};
   commitDateList.forEach(date => {
-    const dateKey = format(date, "YYYY-MM-DD");
+    const dateKey = format(date, "yyyy-MM-dd");
     if (!commitsByDay[dateKey]) {
       commitsByDay[dateKey] = 0;
     }
@@ -107,7 +107,7 @@ function generateActivityVisualization(commitDateList, startDate, endDate) {
       const day = calendar[dayOfWeek][week];
 
       if (day) {
-        const dateKey = format(day, "YYYY-MM-DD");
+        const dateKey = format(day, "yyyy-MM-dd");
 
         // If there are no commits on this day
         if (!commitsByDay[dateKey]) {
@@ -141,9 +141,9 @@ function generateActivityVisualization(commitDateList, startDate, endDate) {
   result.push("Statistics");
   result.push(`• Total commits: ${commitDateList.length}`);
   result.push(
-    `• Date range: ${format(startDate, "YYYY-MM-DD")} to ${format(
+    `• Date range: ${format(startDate, "yyyy-MM-dd")} to ${format(
       endDate,
-      "YYYY-MM-DD"
+      "yyyy-MM-dd"
     )}`
   );
   result.push(`• Distribution: ${process.env.DISTRIBUTION || "uniform"}`);
@@ -164,4 +164,4 @@ function generateActivityVisualization(commitDateList, startDate, endDate) {
   return result.join("\n");
 }
 
-module.exports = generateActivityVisualization;
+export default generateActivityVisualization;

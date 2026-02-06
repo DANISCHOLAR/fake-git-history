@@ -1,9 +1,13 @@
-const process = require("process");
-const { exec } = require("child_process");
-const util = require("util");
-const { existsSync } = require("fs");
+//const process = require("process");
+import process from "process";
+import { exec } from "child_process";
+import util from "util";
+import { existsSync } from "fs";
+//const { exec } = require("child_process");
+//const util = require("util");
+//const { existsSync } = require("fs");
 const execAsync = util.promisify(exec);
-const {
+import {
   parse,
   addDays,
   addYears,
@@ -11,14 +15,14 @@ const {
   setMinutes,
   setSeconds,
   getDay
-} = require("date-fns");
-const chalk = require("chalk");
-const ora = require("ora");
-const boxen = require("boxen");
+} from "date-fns";
+import chalk from "chalk";
+import ora from "ora";
+import boxen from "boxen";
 // Import visualization function
-const generateActivityVisualization = require("./visualization");
+import generateActivityVisualization from "./visualization.js";
 
-module.exports = function({
+export default function({
   commitsPerDay,
   frequency,
   startDate,
@@ -31,7 +35,7 @@ module.exports = function({
   const endDateObj = endDate ? parse(endDate) : new Date();
 
   const commitDateList = createCommitDateList({
-    commitsPerDay: commitsPerDay.split(","),
+    commitsPerDay: (commitsPerDay || "1,1").split(","),
     frequency,
     startDate: startDateObj,
     endDate: endDateObj,
@@ -105,7 +109,7 @@ module.exports = function({
       )
     );
   })();
-};
+}
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
