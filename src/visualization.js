@@ -1,5 +1,6 @@
 import chalk from "chalk";
-import { format, getDay, differenceInDays, addDays } from "date-fns";
+import * as dateFns from "date-fns";
+const { format, getDay, differenceInDays, addDays } = dateFns;
 
 /**
  * Generate a visualization of the activity graph
